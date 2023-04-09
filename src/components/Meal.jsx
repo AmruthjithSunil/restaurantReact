@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-const Frame = styled.div`
-  border-bottom: solid 1px;
-`;
+const Frame = styled.div``;
 
 const Name = styled.div`
   margin-top: 20px;
