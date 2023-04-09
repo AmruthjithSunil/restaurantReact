@@ -30,7 +30,7 @@ export default function AddMeal() {
     <Frame>
       <form>
         <Label htmlFor="amount">Amount</Label>
-        <Input type="number" id="amount" value={1} name="amount" />
+        <Input type="number" id="amount" value={1} name="amount" readOnly />
         <br />
         <Submit type="submit">+Add</Submit>
       </form>

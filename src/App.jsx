@@ -1,6 +1,9 @@
+import { createPortal } from "react-dom";
+
 import Header from "./components/Header";
 import Summary from "./components/Summary";
 import Meals from "./components/Meals";
+import Cart from "./components/Cart";
 
 export default function App() {
   const meals = [
@@ -35,6 +38,7 @@ export default function App() {
       <Header />
       <Summary />
       <Meals meals={meals} />
+      {createPortal(<Cart />, document.getElementById("cart"))}
     </>
   );
 }
