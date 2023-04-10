@@ -9,13 +9,21 @@ const Frame = styled.div`
   background-color: #000c;
 `;
 
-const Box = styled.div`
+const Overlay = styled.div`
+  position: fixed;
   width: 550px;
   height: 170px;
   background-color: #fff;
-  margin: auto;
-  margin-top: 12%;
+  top: 20%;
+  left: 32%;
   border-radius: 10px;
+  z-index: 10;
+  @media (max-width: 1300px) {
+    left: 25%;
+  }
+  @media (max-width: 1000px) {
+    left: 20%;
+  } ;
 `;
 
 const Name = styled.div`
@@ -54,10 +62,19 @@ const H1 = styled.h1`
   margin-right: 15px;
 `;
 
-export default function Cart() {
+const BackDrop = styled.div`
+  position: relative;
+  z-index: -1;
+  background-color: #111a;
+  height: 100%;
+  width: 100%;
+`;
+
+export default function Cart({ cartClickHandler }) {
   return (
     <Frame>
-      <Box>
+      <BackDrop onClick={cartClickHandler} />
+      <Overlay>
         <Name>Sushi</Name>
         <Amount>
           <H1>Total Amount</H1>
@@ -66,10 +83,10 @@ export default function Cart() {
           </Right>
         </Amount>
         <Right>
-          <ButtonLight>Close</ButtonLight>
+          <ButtonLight onClick={cartClickHandler}>Close</ButtonLight>
           <ButtonDark>Order</ButtonDark>
         </Right>
-      </Box>
+      </Overlay>
     </Frame>
   );
 }

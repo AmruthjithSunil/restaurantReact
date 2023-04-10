@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Summary from "./components/Summary";
 import Meals from "./components/Meals";
 import Cart from "./components/Cart";
+import { useState } from "react";
 
 export default function App() {
   const meals = [
@@ -33,12 +34,23 @@ export default function App() {
     },
   ];
 
+  const [isCartVisible, setIsCartVisible] = useState(false);
+
+  function cartClickHandler() {
+    setIsCartVisible((isCartVisible) => !isCartVisible);
+  }
+
   return (
     <>
-      <Header />
+      <Header cartClickHandler={cartClickHandler} />
       <Summary />
       <Meals meals={meals} />
-      {createPortal(<Cart />, document.getElementById("cart"))}
+      {isCartVisible
+        ? createPortal(
+            <Cart cartClickHandler={cartClickHandler} />,
+            document.getElementById("cart")
+          )
+        : ""}
     </>
   );
 }

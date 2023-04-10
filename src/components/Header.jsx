@@ -32,11 +32,11 @@ const Counter = styled.div`
   color: white;
 `;
 
-export default function Header() {
+export default function Header({ cartClickHandler }) {
   return (
     <HeaderFrame>
       <Heading>ReactMeals</Heading>
-      <Cart>
+      <Cart onClick={cartClickHandler}>
         <h4>Your Cart</h4>
         <Counter>0</Counter>
       </Cart>
