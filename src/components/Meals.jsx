@@ -21,7 +21,7 @@ export default function Meals({ meals }) {
       {meals.map((meal) => (
         <List key={meal.id}>
           <Meal meal={meal} />
-          <AddMeal />
+          <AddMeal meal={meal} />
         </List>
       ))}
     </Frame>

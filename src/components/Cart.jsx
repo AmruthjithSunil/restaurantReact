@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import CartContext from "../store/cart-context";
 
 const Frame = styled.div`
   position: fixed;
@@ -12,11 +14,11 @@ const Frame = styled.div`
 const Overlay = styled.div`
   position: fixed;
   width: 550px;
-  height: 170px;
   background-color: #fff;
   top: 20%;
   left: 32%;
   border-radius: 10px;
+  padding-bottom: 20px;
   z-index: 10;
   @media (max-width: 1300px) {
     left: 25%;
@@ -71,15 +73,21 @@ const BackDrop = styled.div`
 `;
 
 export default function Cart({ cartClickHandler }) {
+  const cartCtx = useContext(CartContext);
+
   return (
     <Frame>
       <BackDrop onClick={cartClickHandler} />
       <Overlay>
-        <Name>Sushi</Name>
+        {cartCtx.items.map((item) => (
+          <Name key={item.id}>
+            {item.name} : {item.quantity}
+          </Name>
+        ))}
         <Amount>
           <H1>Total Amount</H1>
           <Right>
-            <H1>35.62</H1>
+            <H1>{Math.round(cartCtx.totalAmount)}</H1>
           </Right>
         </Amount>
         <Right>

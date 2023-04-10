@@ -1,9 +1,10 @@
-import { createPortal } from "react-dom";
-
 import Header from "./components/Header";
 import Summary from "./components/Summary";
 import Meals from "./components/Meals";
 import Cart from "./components/Cart";
+import CartProvider from "./store/CartProvider";
+
+import { createPortal } from "react-dom";
 import { useState } from "react";
 
 export default function App() {
@@ -41,16 +42,15 @@ export default function App() {
   }
 
   return (
-    <>
+    <CartProvider>
       <Header cartClickHandler={cartClickHandler} />
       <Summary />
       <Meals meals={meals} />
-      {isCartVisible
-        ? createPortal(
-            <Cart cartClickHandler={cartClickHandler} />,
-            document.getElementById("cart")
-          )
-        : ""}
-    </>
+      {isCartVisible &&
+        createPortal(
+          <Cart cartClickHandler={cartClickHandler} />,
+          document.getElementById("cart")
+        )}
+    </CartProvider>
   );
 }
