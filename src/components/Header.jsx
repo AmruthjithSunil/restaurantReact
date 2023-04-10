@@ -35,30 +35,12 @@ const Counter = styled.div`
 `;
 
 export default function Header({ cartClickHandler }) {
-  const cartCtx = useContext(CartContext);
-
-  const [totalCartItems, setTotalCartItems] = useState(
-    cartCtx.items.reduce(
-      (currentTotal, item) => currentTotal + item.quantity,
-      0
-    )
-  );
-
-  useEffect(() => {
-    setTotalCartItems(
-      cartCtx.items.reduce(
-        (currentTotal, item) => currentTotal + item.quantity,
-        0
-      )
-    );
-  }, [cartCtx.items]);
-
   return (
     <Frame>
       <Heading>ReactMeals</Heading>
       <Cart onClick={cartClickHandler}>
         <h4>Your Cart</h4>
-        <Counter>{cartCtx.totalQuantity}</Counter>
+        <Counter>{useContext(CartContext).totalQuantity}</Counter>
       </Cart>
     </Frame>
   );
